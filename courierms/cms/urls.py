@@ -3,11 +3,13 @@ from . import views
 
 urlpatterns = [
 
-	path('', views.index, name = "index"),
-    path('add_goods/', views.add_goods, name = "add_goods"),
-    path('dashboard/', views.dashboard, name = "dashboard"),
-    path('good_records/', views.good_records, name = "good_records"),
-    path('register/', views.register, name = "register"),
-    path('tracking/', views.tracking, name = "tracking"),
+    path('', views.index, name="index"),
+    path('index/', views.index, name="index"),
+    path('login/', views.login, name="login"),
+    path('tracking/', views.tracking, name="tracking"),
+    path('payment/', views.payment, name="payment"),
+    path('dashboard/', views.dashboard, name="dashboard"),
+    path('delivery', views.delivery, name="delivery"),
+    path('displaytracking/', views.displaytracking, name="displaytracking"),
 
 ]
