@@ -9,7 +9,7 @@ urlpatterns = [
     path('tracking/', views.tracking, name="tracking"),
     path('payment/', views.payment, name="payment"),
     path('dashboard/', views.dashboard, name="dashboard"),
-    path('delivery', views.delivery, name="delivery"),
+    path('delivery/', views.delivery, name="delivery"),
     path('displaytracking/', views.displaytracking, name="displaytracking"),
 
 ]
