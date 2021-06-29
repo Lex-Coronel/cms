@@ -1,4 +1,5 @@
 from django.db import models
+from django.forms import ModelForm
 import datetime
 from uuid import uuid4
 # Create your models here.
@@ -46,13 +47,12 @@ class Payment(models.Model):
 	bill_fn = models.CharField(max_length = 200, null = True)
 	bill_sn = models.CharField(max_length = 200, null = True)
 	bill_email = models.CharField(max_length = 200, null = True)
-	price = models.FloatField()
-	pay_method = models.CharField(max_length = 200, null = True, choices = METHOD)
-	pay_status = models.CharField(max_length = 200, null = True, choices = STATUS)
-
+	price = models.FloatField(default = 500)
+	pay_method = models.CharField(max_length = 11, null = True, choices = METHOD)
+	pay_status = models.CharField(max_length = 11, null = True, choices = STATUS, default= 'Pending')
+	
 	def __str__(self):
 		return self.bill_sn
-
 
 
 	

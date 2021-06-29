@@ -31,7 +31,7 @@
           <li class="propClone"><a href="{% url 'index' %}">Home</a></li>
           <li class="propClone"><a href="{% url 'tracking' %}">Tracking Page</a></li>
           <li class="propClone"><a href="{% url 'delivery' %}">Delivery</a></li>
-          <li class="propClone"><a href="{% url 'payment' %}">Payment</a></li>
+          <li class="propClone"><a href="{% url 'payment'  %}">Payment</a></li>
           <li class="propClone"><a href="{% url 'login' %}">Log Out</a></li>
         </ul>
       </div>
@@ -54,113 +54,93 @@
   </header>
 
 <!-- Content  =============================-->
-<style>
-.alignleft {
- 	float: left;
-  width:60%;
-  text-align:left;
-	}
-</style>
-
-
 <section class="item content">
-        <div class="container toparea">
-            <div class="underlined-title">
-                <div class="editContent">
-                    <h1 class="text-center">Delivery</h1>
-                </div>
-                <div class="wow-hr type_short">
-                    <span class="wow-hr-h">
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    </span>
-                </div>
-            </div>
-        </div>
-        </section>
+<div class="container toparea">
+  <div class="underlined-title">
+    <div class="editContent">
+      <h3 class="text-left">Track Your Goods</h3>
+    </div>
+  <div class="row">
+    <div class="input-field col s6">
+      <input value="xxxx-xxxx-xxxx" id="first_name2" type="text" class="validate">
+      <label class="active" for="first_name2">Tracking ID</label>
+    </div>
+  </div>
 
-			<div class = "container">
-					<form action="" method = "POST">
-							{% csrf_token %}
+<style>
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
 
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
 
-								<div class = "col-md-6">
-									<label class="form-label">Sender Name:</label>
-									{{form.sender_name}}
-								</div>
-								<div class = "col-md-6">
-									<label class="form-label">Sender Contact Number:</label>
-										{{form.sender_contact_no}}
-								</div>
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+</style>
+</head>
+<body>
 
-								<div class = "col-md-6">
-									<label class="form-label">Sender Email:</label>
-										{{form.sender_email}}
-								</div>
+<h3>Tracking Details</h3>
 
-								<div class = "col-md-6">
-									<label class="form-label">Sender Address:</label>
-										{{form.sender_address}}
-								</div>
+<table>
+  <tr>
+    <th>Sr. No.</th>
+    <th>Payment Status</th>
+    <th>Payment Method</th>
+    <th>Edit</th>
+    <th>Delete</th>
+  </tr>
 
-								<div class = "col-md-6">
-									<label class="form-label">Receiver Name:</label>
-										{{form.receiver_name}}
-								</div>
+    {% for i in payment %}
+    <tr>
+      <td>{{i.shipment}}</td>
+      <td>{{i.pay_status}}</td>
+      <td>{{i.pay_method}}</td>
+      <td> <a href="{% url 'updatedelivery' i.id %}">Edit</a></td>
+      <td><a href="{% url 'deletedelivery' i.id %}">Delete</a></td>
+    </tr>
 
-								<div class = "col-md-6">
-									<label class="form-label">Receiver Contact No:</label>
-										{{form.receiver_contact_no}}
-								</div>
-
-								<div class = "col-md-6">
-									<label class="form-label">Receiver Email:</label>
-										{{form.receiver_email}}
-								</div>
-
-								<div class = "col-md-6">
-									<label class="form-label">Receiver Address:</label>
-										{{form.receiver_address}}
-								</div>
-
-								<div class = "col-md-12">
-									<label class="form-label">Description:</label>
-										{{form.description}}
-										<p class="mb-3"> </p>
-								</div>
+    {% endfor %}
 
 
-								<div >
-									<input class = "form-control btn btn-success" type="submit" name="Submit">
-								</div>
-					</form>
-			</div>
 
-	</section>
+</table>
+
+</body>            
+
+</section>
+
+
 
 <!-- Project  =============================-->
 <section class="content-block" style="background-color:#ffffff;">
 <div class="container text-center">
-	<div class="row">
-		<div class="col-sm-10 col-sm-offset-1">
-				<h1 class="projectname"> COURIER MANAGEMENT SYSTEM
-				</h1>
-			</div>
-		</div>
-	</div>
+  <div class="row">
+    <div class="col-sm-10 col-sm-offset-1">
+        <h1 class="projectname"> COURIER MANAGEMENT SYSTEM
+        </h1>
+      </div>
+    </div>
+  </div>
 </div>
 </section>
 
 <!-- FOOTER =============================-->
 <div class="footer text-center">
-	<div class="container">
-		<div class="row">
-			<p class="footernote">
+  <div class="container">
+    <div class="row">
+      <p class="footernote">
         Copyright © All Rights Reserved 2021
-			</p>
-		</div>
-	</div>
+      </p>
+    </div>
+  </div>
 </div>
 
 
@@ -170,18 +150,19 @@
 <script src="{% static 'js/bootstrap.min.js' %}"></script>
 <script src="{% static 'js/anim.js' %}"></script>
 <script>
-//----HOVER CAPTION---//	  
+//----HOVER CAPTION---//    
 jQuery(document).ready(function ($) {
-	$('.fadeshop').hover(
-		function(){
-			$(this).find('.captionshop').fadeIn(150);
-		},
-		function(){
-			$(this).find('.captionshop').fadeOut(150);
-		}
-	);
+  $('.fadeshop').hover(
+    function(){
+      $(this).find('.captionshop').fadeIn(150);
+    },
+    function(){
+      $(this).find('.captionshop').fadeOut(150);
+    }
+  );
 });
 </script>
-	
+  
 </body>
 </html>
+
