@@ -21,18 +21,18 @@
     <nav role="navigation" class="navbar navbar-white navbar-embossed navbar-lg navbar-fixed-top">
     <div class="container"> 
       <div class="navbar-header">
-        <a href=" index.html "><img src="{% static 'images/exfedlogo.png' %}" alt=""></a>
+        <a href=" {% url 'index' %} "><img src="{% static 'images/exfedlogo.png' %}" alt=""></a>
         <button data-target="#navbar-collapse-02" data-toggle="collapse" class="navbar-toggle" type="button"> 
         <span class="sr-only">Toggle navigation</span>
         </button> 
       </div>
       <div id="navbar-collapse-02" class="collapse navbar-collapse">
         <ul class="nav navbar-nav navbar-right">
-          <li class="propClone"><a href="index.html">Home</a></li>
-          <li class="propClone"><a href="tracking.html">Tracking Page</a></li>
-          <li class="propClone"><a href="delivery.html">Delivery</a></li>
-          <li class="propClone"><a href="payment.html">Payment</a></li>
-          <li class="propClone"><a href="login.html">Log Out</a></li>
+          <li class="propClone"><a href="{% url 'index' %}">Home</a></li>
+          <li class="propClone"><a href="{% url 'tracking' %}">Tracking Page</a></li>
+          <li class="propClone"><a href="{% url 'delivery' %}">Delivery</a></li>
+          <li class="propClone"><a href="{% url 'payment' %}">Payment</a></li>
+          <li class="propClone"><a href="{% url 'login' %}">Log Out</a></li>
         </ul>
       </div>
     </div>
@@ -92,39 +92,25 @@ tr:nth-child(even) {
 <table>
   <tr>
     <th>Sr. No.</th>
-    <th>Date</th>
+    <th>Sender Name</th>
     <th>Description</th>
+    <th>Edit</th>
+    <th>Delete</th>
   </tr>
-  <tr>
-    <td>1</td>
-    <td>6/28/2021</td>
-    <td>Goods picked up from home</td>
-  </tr>
-  <tr>
-    <td>2</td>
-    <td>6/28/2021</td>
-    <td>Goods delivered to outlet for processing</td>
-  </tr>
-  <tr>
-    <td>3</td>
-    <td>6/29/2021</td>
-    <td>Goods on the way to receiver</td>
-  </tr>
-  <tr>
-    <td></td>
-    <td></td>
-    <td></td>
-  </tr>
-  <tr>
-    <td></td>
-    <td></td>
-    <td></td>
-  </tr>
-  <tr>
-    <td></td>
-    <td></td>
-    <td></td>
-  </tr>
+
+    {% for i in delivery %}
+    <tr>
+      <td>{{i.id}}</td>
+      <td>{{i.sender_name}}</td>
+      <td>{{i.description}}</td>
+      <td> <a href="{% url 'updatedelivery' i.id %}">Edit</a></td>
+      <td><a href="{% url 'deletedelivery' i.id %}">Delete</a></td>
+    </tr>
+
+    {% endfor %}
+
+
+
 </table>
 
 </body>            
