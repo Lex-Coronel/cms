@@ -32,7 +32,7 @@
                                       <li class="propClone"><a href="{% url 'index' %}">Home</a></li>
                                       <li class="propClone"><a href="{% url 'tracking' %}">Tracking Page</a></li>
                                       <li class="propClone"><a href="{% url 'delivery' %}">Delivery</a></li>
-                                      <li class="propClone"><a href="">Payment</a></li>
+                                      <li class="propClone"><a href="{% url 'payment' %}">Payment</a></li>
                                       <li class="propClone"><a href="{% url 'login' %}">Log Out</a></li>
                                 </ul>
                             </div>
@@ -172,12 +172,22 @@
                 </div>
 
                 <div class = "col-md-12">
+                    <label>Price:</label>
+                    <p> {{form.price}} </p>
+                </div>
+
+                <div class = "col-md-12">
                     <label>Payment Method:</label>
                     <p> {{form.pay_method}} </p>
                 </div>
 
                 <div class = "col-md-12">
-                    <input type="submit" class = "btn btn-primary form-control" value="PAY">
+                    <label>Payment Status:</label>
+                    <p> {{form.pay_status}} </p>
+                </div>
+
+                <div class = "col-md-12">
+                    <input type="submit" class = "btn btn-primary form-control" name="PAY">
 
                 </div>
             </form>

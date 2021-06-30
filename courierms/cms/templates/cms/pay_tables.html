@@ -31,7 +31,7 @@
           <li class="propClone"><a href="{% url 'index' %}">Home</a></li>
           <li class="propClone"><a href="{% url 'tracking' %}">Tracking Page</a></li>
           <li class="propClone"><a href="{% url 'delivery' %}">Delivery</a></li>
-          <li class="propClone"><a href="">Payment</a></li>
+          <li class="propClone"><a href="{% url 'payment' %}">Payment</a></li>
           <li class="propClone"><a href="{% url 'login' %}">Log Out</a></li>
         </ul>
       </div>
@@ -58,12 +58,12 @@
 <div class="container toparea">
   <div class="underlined-title">
     <div class="editContent">
-      <h3 class="text-left">Track Your Goods</h3>
+      <h3 class="text-left">Track Your Transaction</h3>
     </div>
   <div class="row">
     <div class="input-field col s6">
       <input value="xxxx-xxxx-xxxx" id="first_name2" type="text" class="validate">
-      <label class="active" for="first_name2">Tracking ID</label>
+      <label class="active" for="first_name2">Transaction ID</label>
     </div>
   </div>
 
@@ -87,11 +87,14 @@ tr:nth-child(even) {
 </head>
 <body>
 
-<h3>Tracking Details</h3>
+<h3>Transaction Details</h3>
 
 <table>
   <tr>
+    <th>Transaction ID</th>
     <th>Sr. No.</th>
+    <th>Biller First Name</th>
+    <th>Biller Last Name</th>
     <th>Payment Status</th>
     <th>Payment Method</th>
     <th>Edit</th>
@@ -99,10 +102,13 @@ tr:nth-child(even) {
 
     {% for i in payment %}
     <tr>
+      <td>{{i.transaction_id}}</td>
       <td>{{i.shipment}}</td>
+      <td>{{i.bill_fn}}</td>
+      <td>{{i.bill_sn}}</td>
       <td>{{i.pay_status}}</td>
       <td>{{i.pay_method}}</td>
-      <td> <a href="">Edit</a></td>
+      <td> <a href="{% url 'updatepayment' i.shipment %}">Edit</a></td>
     </tr>
 
     {% endfor %}

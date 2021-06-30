@@ -41,7 +41,7 @@ class DeliveryForm(ModelForm):
 class PaymentForm(ModelForm):
 	class Meta:
 		model = Payment
-		fields = ['bill_fn', 'bill_sn', 'bill_email', 'pay_method', 'shipment', 'pay_status']
+		fields = ['bill_fn', 'bill_sn', 'bill_email', 'price','pay_method', 'shipment', 'pay_status']
 
 
 		widgets = {
@@ -54,7 +54,7 @@ class PaymentForm(ModelForm):
 			'bill_email': TextInput(attrs = {
 				'class': "form-control"
 				}),
-			'pay_mathod': TextInput(attrs = {
+			'price': TextInput(attrs = {
 				'class': "form-control"
 				}),
 		}

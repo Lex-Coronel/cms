@@ -21,18 +21,44 @@ def payment(request):
 	form = PaymentForm()
 
 	if request.method == 'POST': 
-		print('Printing POST:', request.POST)
+		#print('Printing POST:', request.POST)
+		form = PaymentForm(request.POST)
 		if request.POST.get('pay_method') == 'COD':
-			return redirect('pay_tables')
+			if form.is_valid():
+				form.save()
+
+				return redirect('pay_tables')
 
 		if request.POST.get('pay_method') == 'Credit Card':
-			return redirect('delivery')
+			if form.is_valid():
+				form.save()
+
+				return redirect('cc_payment/shipment/')
 
 		if request.POST.get('pay_method') == 'Paypal':
-			return redirect('index')
+			if form.is_valid():
+				form.save()
+
+				return redirect('pay_tables')
 
 	context= {'form':form}
 	return render(request, 'cms/payment.html',context)
+
+def updatepayment(request, pk):
+	payment = Payment.objects.get(shipment=pk)
+	form = PaymentForm(instance=payment)
+
+	if request.method == 'POST': 
+		#print('Printing POST:', request.POST)
+		form = PaymentForm(request.POST, instance=payment)
+		if form.is_valid():
+			form.save()
+
+			return redirect('pay_tables')
+
+	context= {'form':form}
+	return render(request, 'cms/payment.html',context)
+
 
 def dashboard(request):
 	context= {}
