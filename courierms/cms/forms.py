@@ -1,5 +1,5 @@
-from django.forms import ModelForm, TextInput
-from .models import Delivery
+from django.forms import ModelForm, TextInput, ChoiceField
+from .models import Delivery, Payment
 
 
 class DeliveryForm(ModelForm):
@@ -34,6 +34,27 @@ class DeliveryForm(ModelForm):
 				'class': "form-control"
 				}),
 			'description': TextInput(attrs ={
+				'class': "form-control"
+				}),
+		}
+
+class PaymentForm(ModelForm):
+	class Meta:
+		model = Payment
+		fields = ['bill_fn', 'bill_sn', 'bill_email', 'price','pay_method', 'shipment', 'pay_status']
+
+
+		widgets = {
+			'bill_fn': TextInput(attrs = {
+				'class' : 'form-control'
+				}),
+			'bill_sn': TextInput(attrs = {
+				'class': "form-control"
+				}),
+			'bill_email': TextInput(attrs = {
+				'class': "form-control"
+				}),
+			'price': TextInput(attrs = {
 				'class': "form-control"
 				}),
 		}

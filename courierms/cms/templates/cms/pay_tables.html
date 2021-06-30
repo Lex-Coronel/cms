@@ -58,12 +58,12 @@
 <div class="container toparea">
   <div class="underlined-title">
     <div class="editContent">
-      <h3 class="text-left">Track Your Goods</h3>
+      <h3 class="text-left">Track Your Transaction</h3>
     </div>
   <div class="row">
     <div class="input-field col s6">
       <input value="xxxx-xxxx-xxxx" id="first_name2" type="text" class="validate">
-      <label class="active" for="first_name2">Tracking ID</label>
+      <label class="active" for="first_name2">Transaction ID</label>
     </div>
   </div>
 
@@ -87,28 +87,29 @@ tr:nth-child(even) {
 </head>
 <body>
 
-<h3>Tracking Details</h3>
+<h3>Transaction Details</h3>
 
 <table>
   <tr>
+    <th>Transaction ID</th>
     <th>Sr. No.</th>
-    <th>Sender Name</th>
-    <th>Description</th>
+    <th>Biller First Name</th>
+    <th>Biller Last Name</th>
+    <th>Payment Status</th>
+    <th>Payment Method</th>
     <th>Edit</th>
-    <th>Delete</th>
-    <th>Pay</th>
   </tr>
 
-    {% for i in delivery %}
-
-      <tr>
-        <td>{{i.id}}</td>
-        <td>{{i.sender_name}}</td>
-        <td>{{i.description}}</td>
-        <td> <a href="{% url 'updatedelivery' i.id %}">Edit</a></td>
-        <td><a href="{% url 'deletedelivery' i.id %}">Delete</a></td>
-        <td><a href="{% url 'payment' %}">Pay</a></td>
-      </tr>
+    {% for i in payment %}
+    <tr>
+      <td>{{i.transaction_id}}</td>
+      <td>{{i.shipment}}</td>
+      <td>{{i.bill_fn}}</td>
+      <td>{{i.bill_sn}}</td>
+      <td>{{i.pay_status}}</td>
+      <td>{{i.pay_method}}</td>
+      <td> <a href="{% url 'updatepayment' i.shipment %}">Edit</a></td>
+    </tr>
 
     {% endfor %}
 

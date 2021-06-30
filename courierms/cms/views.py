@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, JsonResponse
 from .models import *
-from .forms import DeliveryForm
+from .forms import DeliveryForm, PaymentForm
 
 # Create your views here.
 def index(request):
@@ -18,8 +18,47 @@ def login(request):
 	return render(request, 'cms/login.html',context)
 
 def payment(request):
-	context= {}
+	form = PaymentForm()
+
+	if request.method == 'POST': 
+		#print('Printing POST:', request.POST)
+		form = PaymentForm(request.POST)
+		if request.POST.get('pay_method') == 'COD':
+			if form.is_valid():
+				form.save()
+
+				return redirect('pay_tables')
+
+		if request.POST.get('pay_method') == 'Credit Card':
+			if form.is_valid():
+				form.save()
+
+				return redirect('cc_payment/shipment/')
+
+		if request.POST.get('pay_method') == 'Paypal':
+			if form.is_valid():
+				form.save()
+
+				return redirect('pay_tables')
+
+	context= {'form':form}
 	return render(request, 'cms/payment.html',context)
+
+def updatepayment(request, pk):
+	payment = Payment.objects.get(shipment=pk)
+	form = PaymentForm(instance=payment)
+
+	if request.method == 'POST': 
+		#print('Printing POST:', request.POST)
+		form = PaymentForm(request.POST, instance=payment)
+		if form.is_valid():
+			form.save()
+
+			return redirect('pay_tables')
+
+	context= {'form':form}
+	return render(request, 'cms/payment.html',context)
+
 
 def dashboard(request):
 	context= {}
@@ -32,7 +71,8 @@ def delivery(request):
 		form = DeliveryForm(request.POST)
 		if form.is_valid():
 			form.save()
-			return redirect('payment')
+
+			return redirect('tracking')
 
 	context= {'form': form}
 	return render(request, 'cms/delivery.html', context)
@@ -68,3 +108,7 @@ def displaytracking(request):
 	return render(request, 'cms/displaytracking.html',context)
 
 
+def pay_tables(request):
+	payment = Payment.objects.all()
+
+	return render(request, 'cms/pay_tables.html',  {'payment': payment})
