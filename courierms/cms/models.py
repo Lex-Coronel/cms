@@ -49,10 +49,10 @@ class Payment(models.Model):
 	bill_email = models.CharField(max_length = 200, null = True)
 	price = models.FloatField(default = 500)
 	pay_method = models.CharField(max_length = 11, null = True, choices = METHOD)
-	pay_status = models.CharField(max_length = 11, null = True, choices = STATUS, default= 'Pending')
+	pay_status = models.CharField(max_length = 11, choices = STATUS, default= 'Pending')
 	
 	def __str__(self):
-		return self.bill_sn
+		return self.shipment
 
 
 	

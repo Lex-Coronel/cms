@@ -19,10 +19,11 @@ def login(request):
 
 def payment(request):
 	form = PaymentForm()
+
 	if request.method == 'POST': 
 		print('Printing POST:', request.POST)
 		if request.POST.get('pay_method') == 'COD':
-			return redirect('tracking')
+			return redirect('pay_tables')
 
 		if request.POST.get('pay_method') == 'Credit Card':
 			return redirect('delivery')
@@ -45,7 +46,7 @@ def delivery(request):
 		if form.is_valid():
 			form.save()
 
-			return redirect('payment')
+			return redirect('tracking')
 
 	context= {'form': form}
 	return render(request, 'cms/delivery.html', context)

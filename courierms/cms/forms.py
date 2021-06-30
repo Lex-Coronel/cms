@@ -41,7 +41,7 @@ class DeliveryForm(ModelForm):
 class PaymentForm(ModelForm):
 	class Meta:
 		model = Payment
-		fields = ['bill_fn', 'bill_sn', 'bill_email', 'pay_method']
+		fields = ['bill_fn', 'bill_sn', 'bill_email', 'pay_method', 'shipment', 'pay_status']
 
 
 		widgets = {
