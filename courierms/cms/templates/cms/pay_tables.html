@@ -108,7 +108,7 @@ tr:nth-child(even) {
       <td>{{i.bill_sn}}</td>
       <td>{{i.pay_status}}</td>
       <td>{{i.pay_method}}</td>
-      <td> <a href="{% url 'updatepayment' i.shipment %}">Edit</a></td>
+      <td> <a href="{% url 'updatepayment' i.transaction_id %}">Edit</a></td>
     </tr>
 
     {% endfor %}
