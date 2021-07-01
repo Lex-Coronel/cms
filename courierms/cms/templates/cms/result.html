@@ -49,35 +49,79 @@
     </header>
   
 <!-- Content  =============================-->
+<style>
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+</style>
 <section class="item content">
 <div class="container toparea">
 	<div class="underlined-title">
 		<div class="editContent">
-			<h1 class="text-center">Tracking ID</h1>
-		</div>
-		<div class="wow-hr type_short">
+			{% if trackingid %}
+			<h1 class="text-center">You Searched for {{ trackingid }}</h1>
+			<div class="wow-hr type_short">
 			<span class="wow-hr-h">
-			<i class="fa fa-star"></i>
-			<i class="fa fa-star"></i>
-			<i class="fa fa-star"></i>
+				<i class="fa fa-star"></i>
+				<i class="fa fa-star"></i>
+				<i class="fa fa-star"></i>
 			</span>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-lg-8 col-lg-offset-2">
-			<div class="done">
-			</div>
-			<form method= POST action="{% url 'result' %}" id="contactform">
-			{% csrf_token %}
-				<div class="form">
-					<input type="search" name="trackingid" placeholder="Search Tracking ID">
-					<input type="submit" id="login" class="clearfix btn" value="Continue">
-				</div>
-			</form>
-		</div>
-	</div>
-</div>
+			</div>		
+			<div class="row">
+				<div class="col-lg-8 col-lg-offset-2">
+					<div class="done">
+					</div>
+					<table>
+						  <tr>
+						    <th>Sr. No.</th>
+						    <th>Sender Name</th>
+						    <th>Description</th>
+						    <th>Date Created</th>
+						    <th>Date Updated</th>
+						    <th>View</th>
+						  </tr>
 
+
+						{% for i in trackid %}
+					      <tr>
+					        <td>{{i.id}}</td>
+					        <td>{{i.sender_name}}</td>
+					        <td>{{i.description}}</td>
+					        <td>{{i.date_created}}</td>
+					        <td>{{i.date_updated}}</td>
+					        <td><a href="{% url 'details' i.id %}">View</a></td>
+					      </tr>
+						{% endfor %}
+
+		    		</table>
+				</div>
+			</div>
+			{% else %}
+			<h1 class="text-center">You didn't searched for anything :<</h1>
+			<div class="wow-hr type_short">
+				<span class="wow-hr-h">
+				<i class="fa fa-star"></i>
+				<i class="fa fa-star"></i>
+				<i class="fa fa-star"></i>
+				</span>
+			</div>
+
+			{% endif %}
+		</div>
+		
+	</div>
 </section>
 
 <!-- Project  =============================-->

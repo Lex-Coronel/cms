@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse, JsonResponse
 from .models import *
 from .forms import DeliveryForm, PaymentForm
-from .filters import DeliveryFilter
+from .filters import DeliveryFilter, PaymentFilter
 
 # Create your views here.
 def index(request):
@@ -38,7 +38,7 @@ def payment(request):
 			if form.is_valid():
 				form.save()
 
-				return redirect('cc_payment/shipment/')
+				return redirect('pay_tables')
 
 		if request.POST.get('pay_method') == 'Paypal':
 			if form.is_valid():
@@ -109,11 +109,35 @@ def deletedelivery(request, pk):
 
 
 def displaytracking(request):
-	context= {}
-	return render(request, 'cms/displaytracking.html',context)
+	delivery = Delivery.objects.all()
+
+	context = {'delivery': delivery}
+	return render(request, 'cms/displaytracking.html', context)
 
 
 def pay_tables(request):
 	payment = Payment.objects.all()
 
-	return render(request, 'cms/pay_tables.html',  {'payment': payment})
+	payfilter = PaymentFilter(request.GET, queryset=payment)
+	payment = payfilter.qs
+
+	context = {'payment': payment, 'payfilter':payfilter}
+	return render(request, 'cms/pay_tables.html',  context)
+
+def result(request):
+	if request.method == "POST":
+		trackingid = request.POST['trackingid']
+		trackid = Delivery.objects.filter(id__contains=trackingid)
+
+		context = {'trackingid':trackingid, 'trackid':trackid}
+		return render(request, 'cms/result.html', context)
+	else:
+
+		context = {}
+		return render(request, 'cms/result.html', context)
+
+def details(request, pk):
+	delivery = Delivery.objects.get(id=pk)
+
+	context = {'delivery':delivery}
+	return render(request, 'cms/details.html', context	)
