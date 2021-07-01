@@ -9,6 +9,12 @@ def index(request):
 	context= {}
 	return render (request, 'cms/index.html',context)
 
+#logged in user only
+def dashboard(request):
+	context = {}
+	return render(request, 'cms/dashboard.html', context)
+
+#logged in user only
 def tracking(request):
 	delivery = Delivery.objects.all()
 
@@ -22,6 +28,7 @@ def login(request):
 	context= {}
 	return render(request, 'cms/login.html',context)
 
+#logged in user only
 def payment(request):
 	form = PaymentForm()
 
@@ -49,6 +56,7 @@ def payment(request):
 	context= {'form':form}
 	return render(request, 'cms/payment.html',context)
 
+#logged user in only
 def updatepayment(request, pk):
 	payment = Payment.objects.get(transaction_id=pk)
 	form = PaymentForm(instance=payment)
@@ -64,11 +72,7 @@ def updatepayment(request, pk):
 	context= {'form':form}
 	return render(request, 'cms/payment.html',context)
 
-
-def dashboard(request):
-	context= {}
-	return render(request, 'cms/dashboard.html',context)
-
+#logged in user only
 def delivery(request):
 	form = DeliveryForm()
 	if request.method == 'POST':
@@ -82,6 +86,7 @@ def delivery(request):
 	context= {'form': form}
 	return render(request, 'cms/delivery.html', context)
 
+#logged in user only
 def updatedelivery(request, pk):
 	
 	delivery = Delivery.objects.get(id=pk) 
@@ -97,6 +102,7 @@ def updatedelivery(request, pk):
 	context = {'form': form}
 	return render(request, 'cms/delivery.html', context)
 
+#logged in user only
 def deletedelivery(request, pk):
 	delivery = Delivery.objects.get(id=pk)
 	if request.method == "POST":
@@ -114,7 +120,7 @@ def displaytracking(request):
 	context = {'delivery': delivery}
 	return render(request, 'cms/displaytracking.html', context)
 
-
+#logged in user only
 def pay_tables(request):
 	payment = Payment.objects.all()
 
