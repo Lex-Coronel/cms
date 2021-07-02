@@ -7,7 +7,8 @@
 <meta name="generator" content="">
 </script>
 <link href="{% static '/css/bootstrap.min.css' %}" rel="stylesheet">
-<link href="{% static 'https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css' %}" rel="stylesheet">
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
 <link href="{% static 'css/style.css' %}" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Dosis:100,300,400,500,600,700" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,600,700" rel="stylesheet">
@@ -28,7 +29,7 @@
       </div>
       <div id="navbar-collapse-02" class="collapse navbar-collapse">
         <ul class="nav navbar-nav navbar-right">
-          <li class="propClone"><a href="{% url 'index' %}">Home</a></li>
+          <li class="propClone"><a href="{% url 'dashboard' %}">Home</a></li>
           <li class="propClone"><a href="{% url 'delivery' %}">Delivery</a></li>
           <li class="propClone"><a href="{% url 'tracking' %}">Tracking Page</a></li>
           <li class="propClone"><a href="{% url 'pay_tables' %}">Transactions</a></li>
@@ -37,18 +38,26 @@
       </div>
     </div>
     </nav>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 text-center">
+          <div class="text-pageheader">
+            <div class="subtext-image" data-scrollreveal="enter bottom over 1.7s after 0.0s">
+               ExFed Logistics and Transports
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
     </div>
   </header>
-  
-<!-- Content  =============================-->
 
-<div class="container">
-  <div class="container">
-  <img src="{% static 'images/image1.png'%}" alt="Trucks" style="width:100%;">
-  </div>
-</div>
+  {% block content %}
 
-<!-- Project  =============================-->
+  {% endblock %}
+
+
+  <!-- Project  =============================-->
 <section class="content-block" style="background-color:#ffffff;">
 <div class="container text-center">
   <div class="row">
