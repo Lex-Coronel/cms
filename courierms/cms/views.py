@@ -17,11 +17,12 @@ def dashboard(request):
 #logged in user only
 def tracking(request):
 	delivery = Delivery.objects.all()
+	payment = Payment.objects.all()
 
 	myFilter = DeliveryFilter(request.GET, queryset=delivery)
 	delivery = myFilter.qs
 
-	context = {'delivery': delivery, 'myFilter': myFilter}
+	context = {'delivery': delivery, 'myFilter': myFilter, 'payment': payment}
 	return render(request, 'cms/tracking.html', context)
 
 def login(request):
@@ -29,7 +30,9 @@ def login(request):
 	return render(request, 'cms/login.html',context)
 
 #logged in user only
-def payment(request):
+def payment(request, pk):
+	delivery = Delivery.objects.get(id=pk)
+	payment = Payment.objects.all()
 	form = PaymentForm()
 
 	if request.method == 'POST': 
@@ -53,7 +56,7 @@ def payment(request):
 
 				return redirect('pay_tables')
 
-	context= {'form':form}
+	context= {'form':form, 'payment':payment}
 	return render(request, 'cms/payment.html',context)
 
 #logged user in only
