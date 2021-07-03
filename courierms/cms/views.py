@@ -4,7 +4,12 @@ from .models import *
 from .forms import DeliveryForm, PaymentForm
 from .filters import DeliveryFilter, PaymentFilter
 
+from django.contrib.auth import authenticate, login, logout
+
+from django.contrib import messages
+
 # Create your views here.
+
 def index(request):
 	context= {}
 	return render (request, 'cms/index.html',context)
@@ -26,6 +31,20 @@ def tracking(request):
 	return render(request, 'cms/tracking.html', context)
 
 def login(request):
+
+	if request.method == 'POST':
+		username= request.POST.get('username')
+		password= request.POST.get('password')
+
+		user = authenticate(request, username=username, password=password)
+
+		if user is not None:
+			login(request, user)
+			return redirect('dashboard')
+
+		else:
+			messages.info(request, 'Username OR password is incorrect')
+
 	context= {}
 	return render(request, 'cms/login.html',context)
 
