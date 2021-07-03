@@ -30,7 +30,7 @@ def tracking(request):
 	context = {'delivery': delivery, 'myFilter': myFilter, 'payment': payment}
 	return render(request, 'cms/tracking.html', context)
 
-def login(request):
+def loginPage(request):
 
 	if request.method == 'POST':
 		username= request.POST.get('username')
