@@ -24,7 +24,7 @@
       <h3 class="text-left">Track Your Payment</h3>
     </div>
     <div class="row g-3">
-      <div class = "col col-md-6">
+      <div class = "col col-md-12">
         <form method="get" >
           
             {{payfilter.form}}
@@ -32,6 +32,11 @@
           <button class = "btn btn-primary" type="submit">Search</button>
 
         </form>      
+      </div>
+      <div class="wow-hr-h"> </div>   
+        
+      <div class="col col-md-6">
+          <button class="btn btn-warning"><a href="{% url 'payment' %}">Insert Payment</a></button>  
       </div>
     </div>
 <style>

@@ -30,8 +30,8 @@ def login(request):
 	return render(request, 'cms/login.html',context)
 
 #logged in user only
-def payment(request, pk):
-	delivery = Delivery.objects.get(id=pk)
+def payment(request):
+	
 	payment = Payment.objects.all()
 	form = PaymentForm()
 

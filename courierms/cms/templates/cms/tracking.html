@@ -65,7 +65,6 @@ tr:nth-child(even) {
     <th>Date Updated</th>
     <th>Edit</th>
     <th>Delete</th>
-    <th>Pay</th>
   </tr>
 
     {% for i in delivery %}
@@ -78,7 +77,6 @@ tr:nth-child(even) {
         <td>{{i.date_updated}}</td>
         <td> <a href="{% url 'updatedelivery' i.id %}">Edit</a></td>
         <td><a href="{% url 'deletedelivery' i.id %}">Delete</a></td>
-        <td><a href="{% url 'payment' i.id %}">Pay</a></td>
       </tr>
 
     {% endfor %}
