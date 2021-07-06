@@ -3,6 +3,7 @@ from django.http import HttpResponse, JsonResponse
 from .models import *
 from .forms import DeliveryForm, PaymentForm
 from .filters import DeliveryFilter, PaymentFilter
+from django.contrib import messages
 
 # Create your views here.
 def index(request):
@@ -30,29 +31,42 @@ def login(request):
 	return render(request, 'cms/login.html',context)
 
 #logged in user only
-def payment(request, pk):
-	delivery = Delivery.objects.get(id=pk)
+def payment(request):
+	
 	payment = Payment.objects.all()
 	form = PaymentForm()
+
 
 	if request.method == 'POST': 
 		#print('Printing POST:', request.POST)
 		form = PaymentForm(request.POST)
 		if request.POST.get('pay_method') == 'COD':
 			if form.is_valid():
-				form.save()
+				if Payment.objects.filter(shipment=request.POST['shipment']).exists():
+					messages.error(request, 'Transaction already exists')
+					return redirect('payment')
+				else:
+					form.save()
 
 				return redirect('pay_tables')
 
 		if request.POST.get('pay_method') == 'Credit Card':
 			if form.is_valid():
-				form.save()
+				if Payment.objects.filter(shipment=request.POST['shipment']).exists():
+					messages.error(request, 'Transaction already exists')
+					return redirect('payment')
+				else:
+					form.save()
 
 				return redirect('pay_tables')
 
 		if request.POST.get('pay_method') == 'Paypal':
 			if form.is_valid():
-				form.save()
+				if Payment.objects.filter(shipment=request.POST['shipment']).exists():
+					messages.error(request, 'Transaction already exists')
+					return redirect('payment')
+				else:
+					form.save()
 
 				return redirect('pay_tables')
 
@@ -72,8 +86,8 @@ def updatepayment(request, pk):
 
 			return redirect('pay_tables')
 
-	context= {'form':form}
-	return render(request, 'cms/payment.html',context)
+	context= {'form':form, 'payment': payment}
+	return render(request, 'cms/updatepayment.html',context)
 
 #logged in user only
 def delivery(request):

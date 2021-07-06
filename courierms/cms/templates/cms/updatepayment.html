@@ -28,7 +28,7 @@
 
                 <div class = "col-md-12 dropdown">
                     <label>Tracking ID:</label>
-                    <p> {{form.shipment}} </p>
+                    <p> {{payment.shipment}} </p>
                 </div>
 
                 <div class = "col-md-6">
@@ -63,17 +63,6 @@
 
                 <div class = "col-md-12">
                     <input type="submit" class = "btn btn-primary form-control" name="PAY">
-                    <p></p> 
-                    {% for message in messages %}
-
-                    <div class="alert alert-success">
-                        <a class="close" href="#" data-dismiss="alert">×</a>
-
-                        {{ message }}
-
-                    </div>
-                    {% endfor %}
-
 
                 </div>
             </form>
