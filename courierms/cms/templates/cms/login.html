@@ -21,14 +21,18 @@
 			<div class="col-lg-8 col-lg-offset-2">
 					<div class="done">
 					</div>
-					<form method="post" action="" id="contactform">
+					<form method="POST" action="" id="contactform">
+						{% csrf_token %}
 						<div class="form">
-							<input type="text" name="email" placeholder="Email">
-							<input type="text" name="password" placeholder="Password">
-							<input type="login" id="login" class="clearfix btn" value="Login">
+							<input type="text" name="username" placeholder="Username" class="form-control">
+							<input type="password" name="password" placeholder="Password" class="form-control">
+							<input type="submit" id="login" class="clearfix btn" value="Login">
 						</div>
 					</form>
 			</div>
+			{% for message in messages %}
+				<p id="messages">{{message}}</p>
+			{% endfor %}
 	</div>
 </div>
 </div>

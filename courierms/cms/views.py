@@ -3,19 +3,27 @@ from django.http import HttpResponse, JsonResponse
 from .models import *
 from .forms import DeliveryForm, PaymentForm
 from .filters import DeliveryFilter, PaymentFilter
+
+from django.contrib.auth import authenticate, login, logout
+
 from django.contrib import messages
 
+from django.contrib.auth.decorators import login_required
+
 # Create your views here.
+
 def index(request):
 	context= {}
 	return render (request, 'cms/index.html',context)
 
 #logged in user only
+@login_required(login_url='login')
 def dashboard(request):
 	context = {}
 	return render(request, 'cms/dashboard.html', context)
 
 #logged in user only
+@login_required(login_url='login')
 def tracking(request):
 	delivery = Delivery.objects.all()
 	payment = Payment.objects.all()
@@ -26,13 +34,29 @@ def tracking(request):
 	context = {'delivery': delivery, 'myFilter': myFilter, 'payment': payment}
 	return render(request, 'cms/tracking.html', context)
 
-def login(request):
+def loginPage(request):
+
+	if request.method == 'POST':
+		username= request.POST.get('username')
+		password= request.POST.get('password')
+
+		user = authenticate(request, username=username, password=password)
+
+		if user is not None:
+			login(request, user)
+			return redirect('dashboard')
+
+		else:
+			messages.info(request, 'Username OR password is incorrect')
+
 	context= {}
 	return render(request, 'cms/login.html',context)
 
+
 #logged in user only
-def payment(request):
-	
+@login_required(login_url='login')
+def payment(request, pk):
+	delivery = Delivery.objects.get(id=pk)
 	payment = Payment.objects.all()
 	form = PaymentForm()
 
@@ -74,6 +98,7 @@ def payment(request):
 	return render(request, 'cms/payment.html',context)
 
 #logged user in only
+@login_required(login_url='login')
 def updatepayment(request, pk):
 	payment = Payment.objects.get(transaction_id=pk)
 	form = PaymentForm(instance=payment)
@@ -90,6 +115,7 @@ def updatepayment(request, pk):
 	return render(request, 'cms/updatepayment.html',context)
 
 #logged in user only
+@login_required(login_url='login')
 def delivery(request):
 	form = DeliveryForm()
 	if request.method == 'POST':
@@ -104,6 +130,7 @@ def delivery(request):
 	return render(request, 'cms/delivery.html', context)
 
 #logged in user only
+@login_required(login_url='login')
 def updatedelivery(request, pk):
 	
 	delivery = Delivery.objects.get(id=pk) 
@@ -120,6 +147,7 @@ def updatedelivery(request, pk):
 	return render(request, 'cms/delivery.html', context)
 
 #logged in user only
+@login_required(login_url='login')
 def deletedelivery(request, pk):
 	delivery = Delivery.objects.get(id=pk)
 	if request.method == "POST":
@@ -138,6 +166,7 @@ def displaytracking(request):
 	return render(request, 'cms/displaytracking.html', context)
 
 #logged in user only
+@login_required(login_url='login')
 def pay_tables(request):
 	payment = Payment.objects.all()
 
