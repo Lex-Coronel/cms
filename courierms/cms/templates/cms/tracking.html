@@ -1,0 +1,93 @@
+{% extends 'cms/navbar_in.html' %}
+{% load static %}
+{% block content %}
+  
+<!-- Content  =============================-->
+
+<div class="underlined-title">
+    <div class="editContent">
+      <h1 class="text-center">Tracking ID</h1>
+    </div>
+    <div class="wow-hr type_short">
+      <span class="wow-hr-h">
+      <i class="fa fa-star"></i>
+      <i class="fa fa-star"></i>
+      <i class="fa fa-star"></i>
+      </span>
+    </div>
+  </div>
+
+<section class="item content">
+<div class="container toparea">
+  <div class="underlined-title">
+    <div class="editContent">
+      <h3 class="text-left">Track Your Delivery</h3>
+    </div>
+  <div class="row g-3">
+    <div class = "col col-md-6">
+      <form method="get" >
+        
+          {{myFilter.form}}
+
+        <button class = "btn btn-primary" type="submit">Search</button>
+
+      </form>      
+    </div>
+  </div>
+<style>
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+</style>
+</head>
+<body>
+
+<h3>Tracking Details</h3>
+
+<table>
+  <tr>
+    <th>Sr. No.</th>
+    <th>Sender Name</th>
+    <th>Description</th>
+    <th>Date Created</th>
+    <th>Date Updated</th>
+    <th>Edit</th>
+    <th>Delete</th>
+  </tr>
+
+    {% for i in delivery %}
+
+      <tr>
+        <td>{{i.id}}</td>
+        <td>{{i.sender_name}}</td>
+        <td>{{i.description}}</td>
+        <td>{{i.date_created}}</td>
+        <td>{{i.date_updated}}</td>
+        <td> <a href="{% url 'updatedelivery' i.id %}">Edit</a></td>
+        <td><a href="{% url 'deletedelivery' i.id %}">Delete</a></td>
+      </tr>
+
+    {% endfor %}
+
+
+
+</table>
+
+</body>            
+
+</section>
+
+
+{% endblock %}

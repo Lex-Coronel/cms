@@ -1,0 +1,40 @@
+{% extends 'cms/navbar_main.html' %}
+{% load static %}
+{% block content %}
+  
+<!-- Content  =============================-->
+<section class="item content">
+<div class="container toparea">
+	<div class="underlined-title">
+		<div class="editContent">
+			<h1 class="text-center">Login</h1>
+		</div>
+		<div class="wow-hr type_short">
+			<span class="wow-hr-h">
+			<i class="fa fa-star"></i>
+			<i class="fa fa-star"></i>
+			<i class="fa fa-star"></i>
+			</span>
+		</div>
+	</div>
+	<div class="row">
+			<div class="col-lg-8 col-lg-offset-2">
+					<div class="done">
+					</div>
+					<form method="POST" action="" id="contactform">
+						{% csrf_token %}
+						<div class="form">
+							<input type="text" name="username" placeholder="Username" class="form-control">
+							<input type="password" name="password" placeholder="Password" class="form-control">
+							<input type="submit" id="login" class="clearfix btn" value="Login">
+						</div>
+					</form>
+			</div>
+			{% for message in messages %}
+				<p id="messages">{{message}}</p>
+			{% endfor %}
+	</div>
+</div>
+</div>
+</section>
+{% endblock %}

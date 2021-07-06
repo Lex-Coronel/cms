@@ -1,0 +1,97 @@
+{% extends 'cms/navbar_in.html' %}
+{% load static %}
+{% block content %}
+  
+
+<!-- Content  =============================-->
+
+    <div class="underlined-title">
+    <div class="editContent">
+      <h1 class="text-center">Transaction ID</h1>
+    </div>
+    <div class="wow-hr type_short">
+      <span class="wow-hr-h">
+      <i class="fa fa-star"></i>
+      <i class="fa fa-star"></i>
+      <i class="fa fa-star"></i>
+      </span>
+    </div>
+  </div>
+<section class="item content">
+<div class="container toparea">
+  <div class="underlined-title">
+    <div class="editContent">
+      <h3 class="text-left">Track Your Payment</h3>
+    </div>
+    <div class="row g-3">
+      <div class = "col col-md-12">
+        <form method="get" >
+          
+            {{payfilter.form}}
+
+          <button class = "btn btn-primary" type="submit">Search</button>
+
+        </form>      
+      </div>
+      <div class="wow-hr-h"> </div>   
+        
+      <div class="col col-md-6">
+          <button class="btn btn-warning"><a href="{% url 'payment' %}">Insert Payment</a></button>  
+      </div>
+    </div>
+<style>
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+</style>
+</head>
+<body>
+
+<h3>Transaction Details</h3>
+
+<table>
+  <tr>
+    <th>Transaction ID</th>
+    <th>Sr. No.</th>
+    <th>Biller First Name</th>
+    <th>Biller Last Name</th>
+    <th>Payment Status</th>
+    <th>Payment Method</th>
+    <th>Edit</th>
+  </tr>
+
+    {% for i in payment %}
+    <tr>
+      <td>{{i.transaction_id}}</td>
+      <td>{{i.shipment}}</td>
+      <td>{{i.bill_fn}}</td>
+      <td>{{i.bill_sn}}</td>
+      <td>{{i.pay_status}}</td>
+      <td>{{i.pay_method}}</td>
+      <td> <a href="{% url 'updatepayment' i.transaction_id %}">Edit</a></td>
+    </tr>
+
+    {% endfor %}
+
+
+
+</table>
+
+</body>            
+
+</section>
+
+
+{% endblock %}

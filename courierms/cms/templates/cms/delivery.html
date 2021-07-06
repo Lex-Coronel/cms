@@ -1,0 +1,93 @@
+{% extends 'cms/navbar_in.html' %}
+{% load static %}
+{% block content %}
+
+<!-- Content  =============================-->
+    
+
+<style>
+.alignleft {
+ 	float: left;
+  width:60%;
+  text-align:left;
+	}
+</style>
+
+
+<section class="item content">
+        <div class="container toparea">
+            <div class="underlined-title">
+                <div class="editContent">
+                    <h1 class="text-center">Delivery</h1>
+                </div>
+                <div class="wow-hr type_short">
+                    <span class="wow-hr-h">
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    </span>
+                </div>
+            </div>
+        </div>
+        </section>
+
+			<div class = "container">
+					<form action="" method = "POST">
+							{% csrf_token %}
+
+
+								<div class = "col-md-6">
+									<label class="form-label">Sender Name:</label>
+									{{form.sender_name}}
+								</div>
+								<div class = "col-md-6">
+									<label class="form-label">Sender Contact Number:</label>
+										{{form.sender_contact_no}}
+								</div>
+
+								<div class = "col-md-6">
+									<label class="form-label">Sender Email:</label>
+										{{form.sender_email}}
+								</div>
+
+								<div class = "col-md-6">
+									<label class="form-label">Sender Address:</label>
+										{{form.sender_address}}
+								</div>
+
+								<div class = "col-md-6">
+									<label class="form-label">Receiver Name:</label>
+										{{form.receiver_name}}
+								</div>
+
+								<div class = "col-md-6">
+									<label class="form-label">Receiver Contact No:</label>
+										{{form.receiver_contact_no}}
+								</div>
+
+								<div class = "col-md-6">
+									<label class="form-label">Receiver Email:</label>
+										{{form.receiver_email}}
+								</div>
+
+								<div class = "col-md-6">
+									<label class="form-label">Receiver Address:</label>
+										{{form.receiver_address}}
+								</div>
+
+								<div class = "col-md-12">
+									<label class="form-label">Description:</label>
+										{{form.description}}
+										<p class="mb-3"> </p>
+								</div>
+
+
+								<div>
+									<input class = "form-control btn btn-success" type="submit" name="Submit">
+								</div>
+					</form>
+			</div>
+
+	</section>
+
+{% endblock %}

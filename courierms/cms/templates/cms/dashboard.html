@@ -21,18 +21,18 @@
     <nav role="navigation" class="navbar navbar-white navbar-embossed navbar-lg navbar-fixed-top">
     <div class="container"> 
       <div class="navbar-header">
-        <a href=" index.html "><img src="{% static 'images/exfedlogo.png' %}" alt=""></a>
+        <a href=" {% url 'dashboard' %} "><img src="{% static 'images/exfedlogo.png' %}" alt=""></a>
         <button data-target="#navbar-collapse-02" data-toggle="collapse" class="navbar-toggle" type="button"> 
         <span class="sr-only">Toggle navigation</span>
         </button> 
       </div>
       <div id="navbar-collapse-02" class="collapse navbar-collapse">
         <ul class="nav navbar-nav navbar-right">
-          <li class="propClone"><a href="#"></a></li>
-          <li class="propClone"><a href="#"></a></li>
-          <li class="propClone"><a href="#"></a></li>
-          <li class="propClone"><a href="#"></a></li>
-          <li class="propClone"><a href="login.html">Login</a></li>
+          <li class="propClone"><a href="{% url 'dashboard' %}">Home</a></li>
+          <li class="propClone"><a href="{% url 'delivery' %}">Delivery</a></li>
+          <li class="propClone"><a href="{% url 'tracking' %}">Tracking Page</a></li>
+          <li class="propClone"><a href="{% url 'pay_tables' %}">Transactions</a></li>
+          <li class="propClone"><a href="{% url 'login' %}">Log Out</a></li>
         </ul>
       </div>
     </div>
@@ -51,26 +51,26 @@
 <!-- Project  =============================-->
 <section class="content-block" style="background-color:#ffffff;">
 <div class="container text-center">
-	<div class="row">
-		<div class="col-sm-10 col-sm-offset-1">
-			<div class="item" data-scrollreveal="enter top over 0.4s after 0.1s">
-				<h1 class="projectname"> COURIER MANAGEMENT SYSTEM
-				</h1>
-			</div>
-		</div>
-	</div>
+  <div class="row">
+    <div class="col-sm-10 col-sm-offset-1">
+      <div class="item" data-scrollreveal="enter top over 0.4s after 0.1s">
+        <h1 class="projectname"> COURIER MANAGEMENT SYSTEM
+        </h1>
+      </div>
+    </div>
+  </div>
 </div>
 </section>
 
 <!-- FOOTER =============================-->
 <div class="footer text-center">
-	<div class="container">
-		<div class="row">
-			<p class="footernote">
+  <div class="container">
+    <div class="row">
+      <p class="footernote">
         Copyright © All Rights Reserved 2021
-			</p>
-		</div>
-	</div>
+      </p>
+    </div>
+  </div>
 </div>
 
 
@@ -81,18 +81,18 @@
 <script src="{% static 'js/bootstrap.min.js' %}"></script>
 <script src="{% static 'js/anim.js' %}"></script>
 <script>
-//----HOVER CAPTION---//	  
+//----HOVER CAPTION---//    
 jQuery(document).ready(function ($) {
-	$('.fadeshop').hover(
-		function(){
-			$(this).find('.captionshop').fadeIn(150);
-		},
-		function(){
-			$(this).find('.captionshop').fadeOut(150);
-		}
-	);
+  $('.fadeshop').hover(
+    function(){
+      $(this).find('.captionshop').fadeIn(150);
+    },
+    function(){
+      $(this).find('.captionshop').fadeOut(150);
+    }
+  );
 });
 </script>
-	
+  
 </body>
 </html>

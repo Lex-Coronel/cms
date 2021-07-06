@@ -1,0 +1,37 @@
+{% extends 'cms/navbar_main.html' %}
+{% load static %}
+{% block content %}
+  
+<!-- Content  =============================-->
+<section class="item content">
+<div class="container toparea">
+	<div class="underlined-title">
+		<div class="editContent">
+			<h1 class="text-center">Tracking ID</h1>
+		</div>
+		<div class="wow-hr type_short">
+			<span class="wow-hr-h">
+			<i class="fa fa-star"></i>
+			<i class="fa fa-star"></i>
+			<i class="fa fa-star"></i>
+			</span>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-lg-8 col-lg-offset-2">
+			<div class="done">
+			</div>
+			<form method= POST action="{% url 'result' %}" id="contactform">
+			{% csrf_token %}
+				<div class="form">
+					<input type="search" name="trackingid" placeholder="Search Tracking ID">
+					<input type="submit" id="login" class="clearfix btn" value="Continue">
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+
+</section>
+
+{% endblock %}

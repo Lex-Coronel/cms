@@ -1,0 +1,34 @@
+{% extends 'cms/navbar_in.html' %}
+{% load static %}
+{% block content %}
+<!-- Content  =============================-->
+<style>
+.alignleft {
+ 	float: left;
+  width:60%;
+  text-align:left;
+	}
+</style>
+
+
+<section class="item content">
+<div class="container toparea">
+	<div class="underlined-title">
+		<div class="editContent">
+			<h1 class="text-center">Delivery</h1>
+		</div>
+
+		<h2 class= "text-center">Are you sure you want to delete the {{item}}?</h2>
+
+		<form class ="text-center" action = "{% url 'deletedelivery' item %}" method="POST">
+				
+				{% csrf_token %}
+
+				<a class="btn btn-warning" href = "{% url 'tracking' %}"> Cancel </a>
+
+				<input class="btn btn-danger" type="submit" name="Confirm">
+
+		</form>
+	</section>
+
+{% endblock %}

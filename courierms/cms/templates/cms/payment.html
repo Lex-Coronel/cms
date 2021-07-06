@@ -1,0 +1,81 @@
+{% extends 'cms/navbar_in.html' %}
+{% load static %}
+{% block content %}
+  
+<!-- Content  =============================-->
+
+        <section class="item content">
+        <div class="container toparea">
+            <div class="underlined-title">
+                <div class="editContent">
+                    <h1 class="text-center">Payment</h1>
+                </div>
+                <div class="wow-hr type_short">
+                    <span class="wow-hr-h">
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    </span>
+                </div>
+            </div>
+        </div>
+        </section>
+        <h4></h4>
+
+        <div class = "container">
+            <form method="POST" action="">
+                {% csrf_token %}
+
+                <div class = "col-md-12 dropdown">
+                    <label>Tracking ID:</label>
+                    <p> {{form.shipment}} </p>
+                </div>
+
+                <div class = "col-md-6">
+                    <label>First Name:</label>
+                    <p> {{form.bill_fn}} </p>
+                </div>
+
+                <div class = "col-md-6">
+                    <label>Last Name:</label>
+                    <p> {{form.bill_sn}} </p>
+                </div>
+
+                <div class = "col-md-12">
+                    <label>Email:</label>
+                    <p> {{form.bill_email}} </p>
+                </div>
+
+                <div class = "col-md-12">
+                    <label>Price:</label>
+                    <p> {{form.price}} </p>
+                </div>
+
+                <div class = "col-md-12">
+                    <label>Payment Method:</label>
+                    <p> {{form.pay_method}} </p>
+                </div>
+
+                <div class = "col-md-12">
+                    <label>Payment Status:</label>
+                    <p> {{form.pay_status}} </p>
+                </div>
+
+                <div class = "col-md-12">
+                    <input type="submit" class = "btn btn-primary form-control" name="PAY">
+                    <p></p> 
+                    {% for message in messages %}
+
+                    <div class="alert alert-success">
+                        <a class="close" href="#" data-dismiss="alert">×</a>
+
+                        {{ message }}
+
+                    </div>
+                    {% endfor %}
+
+
+                </div>
+            </form>
+        </div>
+{% endblock %}
