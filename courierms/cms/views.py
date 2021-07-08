@@ -128,6 +128,7 @@ def delivery(request):
 	context= {'form': form}
 	return render(request, 'cms/delivery.html', context)
 
+
 #logged in user only
 @login_required(login_url='login')
 def updatedelivery(request, pk):

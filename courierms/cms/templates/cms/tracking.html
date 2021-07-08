@@ -63,7 +63,7 @@ tr:nth-child(even) {
     <th>Description</th>
     <th>Date Created</th>
     <th>Date Updated</th>
-    <th>Edit</th>
+    <th>Update</th>
     <th>Delete</th>
   </tr>
 
@@ -75,7 +75,7 @@ tr:nth-child(even) {
         <td>{{i.description}}</td>
         <td>{{i.date_created}}</td>
         <td>{{i.date_updated}}</td>
-        <td> <a href="{% url 'updatedelivery' i.id %}">Edit</a></td>
+        <td> <a href="{% url 'updatedelivery' i.id %}">Update</a></td>
         <td><a href="{% url 'deletedelivery' i.id %}">Delete</a></td>
       </tr>
 

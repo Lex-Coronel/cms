@@ -33,7 +33,6 @@
 
         </form>      
       </div>
-      <div class="wow-hr-h"> </div>   
         
       <div class="col col-md-6">
           <button class="btn btn-warning"><a href="{% url 'payment' %}">Insert Payment</a></button>  
@@ -69,7 +68,7 @@ tr:nth-child(even) {
     <th>Biller Last Name</th>
     <th>Payment Status</th>
     <th>Payment Method</th>
-    <th>Edit</th>
+    <th>Update</th>
   </tr>
 
     {% for i in payment %}
@@ -80,7 +79,7 @@ tr:nth-child(even) {
       <td>{{i.bill_sn}}</td>
       <td>{{i.pay_status}}</td>
       <td>{{i.pay_method}}</td>
-      <td> <a href="{% url 'updatepayment' i.transaction_id %}">Edit</a></td>
+      <td> <a href="{% url 'updatepayment' i.transaction_id %}">Update</a></td>
     </tr>
 
     {% endfor %}
